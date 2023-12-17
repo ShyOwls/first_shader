@@ -231,7 +231,8 @@ function roundedRect(ctx, x, y, width, height, radius) {
   ctx.arcTo(x, y, x, y + radius, radius);
   ctx.stroke();
 } */
-function draw() {
+
+/* function draw() {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
@@ -242,13 +243,191 @@ function draw() {
     const circle = new Path2D();
     circle.arc(100, 35, 25, 0, 2 * Math.PI);
 	
-	const cube = new Path2D();
-	cube.square(20, 20, 30);
-	
-	ctx.stroke(cube);
+
     ctx.stroke(rectangle);
+	ctx.fillStyle = "blue";
     ctx.fill(circle);
   }
+} */
+//fill style example usage 
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      ctx.fillStyle = `rgb(${Math.floor(255 - 42.5 * i)}, ${Math.floor(
+        255 - 30 * j,
+      )}, 0)`;
+      ctx.fillRect(j * 50, i * 50, 50, 55);
+    }
+  }
+} */
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 6; j++) {
+      ctx.strokeStyle = `rgb(0, ${Math.floor(255 - 42.5 * i)}, ${Math.floor(
+        255 - 42.5 * j,
+      )})`;
+	  ctx.globalAlpha = 0.2//sets transparency
+      ctx.beginPath();
+      ctx.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, 2 * Math.PI, true);
+      ctx.stroke();
+    }
+  }
+}
+ */
+ //windows logo, using globalalpha  
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+  // draw background
+  ctx.fillStyle = "#FD0";
+  ctx.fillRect(0, 0, 75, 75);
+  ctx.fillStyle = "#6C0";
+  ctx.fillRect(75, 0, 75, 75);
+  ctx.fillStyle = "#09F";
+  ctx.fillRect(0, 75, 75, 75);
+  ctx.fillStyle = "#F30";
+  ctx.fillRect(75, 75, 75, 75);
+  ctx.fillStyle = "#FFF";
+
+  // set transparency value
+  ctx.globalAlpha = 0.2;
+
+  // Draw semi transparent circles
+  for (let i = 0; i < 8; i++) {
+    ctx.beginPath();
+    ctx.arc(75, 75, 1 + 10 * i, 0, Math.PI * 2, true);
+    ctx.fill();
+  }
+} */
+
+//example using rbga(), using this the fill and stroke style can be set individually
+
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+
+  // Draw background
+  ctx.fillStyle = "rgb(255, 221, 0)";
+  ctx.fillRect(0, 0, 150, 37.5);
+  ctx.fillStyle = "rgb(102, 204, 0)";
+  ctx.fillRect(0, 37.5, 150, 37.5);
+  ctx.fillStyle = "rgb(0, 153, 255)";
+  ctx.fillRect(0, 75, 150, 37.5);
+  ctx.fillStyle = "rgb(255, 51, 0)";
+  ctx.fillRect(0, 112.5, 150, 37.5);
+
+  // Draw semi transparent rectangles
+  for (let i = 0; i < 10; i++) {
+    ctx.fillStyle = `rgba(255, 255, 255, ${(i + 1) / 10})`;
+    for (let j = 0; j < 4; j++) {
+      ctx.fillRect(5 + i * 14, 5 + j * 37.5, 14, 27.5);
+    }
+  }
+} */
+
+//changing the width of lines 
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+  for (let i = 0; i < 10; i++) {
+    ctx.lineWidth = 1 + i;
+    ctx.beginPath();
+    ctx.moveTo(5 + i * 14, 5);
+    ctx.lineTo(5 + i * 14, 140);
+    ctx.stroke();
+  }
+}
+ */
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+
+  // Draw guides
+  ctx.strokeStyle = "#09f";
+  ctx.beginPath();
+  ctx.moveTo(10, 10);
+  ctx.lineTo(140, 10);
+  ctx.moveTo(10, 140);
+  ctx.lineTo(140, 140);
+  ctx.stroke();
+
+  // Draw lines
+  ctx.strokeStyle = "black";
+  ["butt", "round", "square"].forEach((lineCap, i) => {
+    ctx.lineWidth = 15;
+    ctx.lineCap = lineCap;
+    ctx.beginPath();
+    ctx.moveTo(25 + i * 50, 10);
+    ctx.lineTo(25 + i * 50, 140);
+    ctx.stroke();
+  });
+} */
+/* function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+  ctx.lineWidth = 10;
+  ["round", "bevel", "miter"].forEach((lineJoin, i) => {
+    ctx.lineJoin = lineJoin;
+    ctx.beginPath();
+    ctx.moveTo(-5, 5 + i * 40);
+    ctx.lineTo(35, 45 + i * 40);
+    ctx.lineTo(75, 5 + i * 40);
+    ctx.lineTo(115, 45 + i * 40);
+    ctx.lineTo(155, 5 + i * 40);
+    ctx.stroke();
+  });
+}
+ */
+ //Demo of using the miterLimit property
+/*  function draw() {
+  const ctx = document.getElementById("canvas").getContext("2d");
+
+  // Clear canvas
+  ctx.clearRect(0, 0, 150, 150);
+
+  // Draw guides
+  ctx.strokeStyle = "#09f";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(-5, 50, 160, 50);
+
+  // Set line styles
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 10;
+
+  // check input
+  if (document.getElementById("miterLimit").value.match(/\d+(\.\d+)?/)) {
+    ctx.miterLimit = parseFloat(document.getElementById("miterLimit").value);
+  } else {
+    alert("Value must be a positive number");
+  }
+
+  // Draw lines
+  ctx.beginPath();
+  ctx.moveTo(0, 100);
+  for (let i = 0; i < 24; i++) {
+    const dy = i % 2 === 0 ? 25 : -25;
+    ctx.lineTo(Math.pow(i, 1.5) * 2, 75 + dy);
+  }
+  ctx.stroke();
+  return false;
+}
+ */
+ 
+ //Using Dash lines to create marching ant effect 
+const ctx = document.getElementById("canvas").getContext("2d");
+let offset = 0;
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.setLineDash([4, 2]);
+  ctx.lineDashOffset = -offset;
+  ctx.strokeRect(10, 10, 100, 100);
 }
 
-draw();
+function march() {
+  offset++;
+  if (offset > 5) {
+    offset = 0;
+  }
+  draw();
+  setTimeout(march, 20);
+}
+
+march();
