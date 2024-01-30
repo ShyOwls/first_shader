@@ -410,7 +410,7 @@ function roundedRect(ctx, x, y, width, height, radius) {
 }
  */
  
- //Using Dash lines to create marching ant effect 
+ //Using Dash lines to create marching ant animation
 const ctx = document.getElementById("canvas").getContext("2d");
 let offset = 0;
 
@@ -431,3 +431,4 @@ function march() {
 }
 
 march();
+//I found another resource to help learn this while on my break.
