@@ -7,10 +7,13 @@
 		<script src= "p5.js" defer></script>
 		<title>Shader Canvas</title>
 		<!--best to style the canvas here to avoid distortions in the image-->
-		<style>
+		<style type="text/css">
 			canvas { 
 				border: 2px solid black;
 				}
+				body {
+					margin: 0;
+					}
 		</style>
 	</head>
 	<body>
@@ -20,24 +23,8 @@
 			</header>
 			<section class = "drawbox">
 				<h2> Draw here </h2>
-				<canvas id = "canvas" width="800" height="800" role="presentation"></canvas>
+				<canvas id = "canvas" role="presentation"></canvas>
 			</section>
-	<table>
-		<tr>
-			<td>
-				<canvas id="canvas" width="150" height="150" role="presentation"></canvas>
-			</td>
-			<td>
-			Change the <code>miterLimit</code> by entering a new value below and
-			clicking the redraw button.<br /><br />
-			<form onsubmit="return draw();">
-				<label for="miterLimit">Miter limit</label>
-				<input type="number" size="3" id="miterLimit" />
-				<input type="submit" value="Redraw" />
-			</form>
-			</td>
-		</tr>
-	</table>
 		</div><!--End of wrapper -->
 	</body>
 </html>
